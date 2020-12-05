@@ -1,12 +1,14 @@
 defmodule KV.MixProject do
   use Mix.Project
 
+  # this is a public function - returning the project configuration
   def project do
     [
       app: :kv,
       version: "0.1.0",
       elixir: "~> 1.11",
       start_permanent: Mix.env() == :prod,
+      # invoking deps private function from a public function project
       deps: deps()
     ]
   end
@@ -18,6 +20,7 @@ defmodule KV.MixProject do
     ]
   end
 
+  # this is a private function defined using defp
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
