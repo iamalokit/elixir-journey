@@ -26,6 +26,16 @@ defmodule KV.Bucket do
     end
 
 
+    # Breaking the put function code apart
+    def put(bucket, key, value) do
+        # client code
+        Agent.update(bucket, fn state ->
+            # server code
+            Map.put(state, key, value)
+        end)
+    end
+
+
     @doc """
     Deletes `key` from the bucket 
     Returns the current value of `key` , if `key` exists.
