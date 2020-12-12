@@ -1,18 +1,12 @@
-defmodule Game do
-  @moduledoc """
-  Documentation for `Game`.
-  """
+defmodule ExMon.Game do
+  use Agent
 
-  @doc """
-  Hello world.
+  def start(computer, player) do
+    initial_value = %{computer: computer, player: player, status: :started}
+    Agent.start_link(fn -> initial_value end, name: __MODULE__)
+  end
 
-  ## Examples
-
-      iex> Game.hello()
-      :world
-
-  """
-  def hello do
-    :world
+  def info() do
+    Agent.get(__MODULE__, & &1)
   end
 end
