@@ -16,6 +16,7 @@ defmodule PhoenixSampleWeb.Router do
   scope "/", PhoenixSampleWeb do
     pipe_through :browser
 
+    get "/albums", AlbumsController, :index
     get "/", PageController, :index
   end
 
