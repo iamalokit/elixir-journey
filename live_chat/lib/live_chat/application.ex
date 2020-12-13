@@ -17,6 +17,7 @@ defmodule LiveChat.Application do
       LiveChatWeb.Endpoint
       # Start a worker by calling: LiveChat.Worker.start_link(arg)
       # {LiveChat.Worker, arg}
+      supervisor(LiveChat.Presence, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
