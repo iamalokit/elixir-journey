@@ -15,7 +15,7 @@ defmodule LiveChatWeb.Router do
 
   scope "/", LiveChatWeb do
     pipe_through :browser
-
+    resources "/users", UserController
     get "/", PageController, :index
   end
 
@@ -38,5 +38,6 @@ defmodule LiveChatWeb.Router do
       pipe_through :browser
       live_dashboard "/dashboard", metrics: LiveChatWeb.Telemetry
     end
+
   end
 end
