@@ -1,6 +1,6 @@
-defmodule LiveChat.RoomChannel do
-  use LiveChat.Web, :channel
-  alias LiveChat.Presence
+defmodule LiveChatWeb.RoomChannel do
+  use LiveChatWeb, :channel
+  alias LiveChatWeb.Presence
 
   def join("room:lobby", _, socket) do
     send self(), :after_join
@@ -8,8 +8,10 @@ defmodule LiveChat.RoomChannel do
   end
 
   def handle_info(:after_join, socket) do
-    Presence.track(socket, socket.assigns.user, %{online_at: :os.system_time(:milli_seconds)})
-    push_socket, "presence_state", Presence.list(socket)
+    Presence.track(socket, socket.assigns.user, %{
+      online_at: :os.system_time(:milli_seconds)
+    })
+    push socket, "presence_state", Presence.list(socket)
     {:noreply, socket}
   end
 

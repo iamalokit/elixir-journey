@@ -17,7 +17,7 @@ defmodule LiveChatWeb.UserSocket do
   # performing token verification on connect.
   @impl true
   def connect(%{"user" => user}, socket) do
-    {:ok, assign(socket}, :user, user)}
+    {:ok, assign(socket, :user, user)}
   end
 
   # Socket id's are topics that allow you to identify all sockets for a given user:

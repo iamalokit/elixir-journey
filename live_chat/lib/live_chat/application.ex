@@ -14,10 +14,10 @@ defmodule LiveChat.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: LiveChat.PubSub},
       # Start the Endpoint (http/https)
-      LiveChatWeb.Endpoint
+      LiveChatWeb.Endpoint,
       # Start a worker by calling: LiveChat.Worker.start_link(arg)
       # {LiveChat.Worker, arg}
-      supervisor(LiveChat.Presence, [])
+      {LiveChat.Presence, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
