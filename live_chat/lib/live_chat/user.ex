@@ -11,10 +11,29 @@ defmodule LiveChat.User do
   end
 
   @doc false
-  def changeset(%User{} = user, attrs) do
+  def changeset(%User{} = user, attrs \\ %{}) do
     user
     |> cast(attrs, [:email, :password])
     |> validate_required([:email, :password])
     |> unique_constraint(:email)
   end
+
+  def reg_changeset(%User{} = user, attrs \\ %{}) do
+    user
+    |> changeset(attrs)
+    |> cast(attrs, [:password], [])
+    |> validate_required(:password, min: 5)
+    |> hash_pw()
+  end
+
+  def hash_pw(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{password: p}} ->
+        put_change(changeset, :encrypt_pass, Comeonin.Pbkdf2.hashpwsalt(p))
+
+        _ ->
+          changeset
+    end
+  end
+
 end
