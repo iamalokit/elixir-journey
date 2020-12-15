@@ -45,7 +45,8 @@ defmodule Blog.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:slugger, "~> 0.1.0"}
+      {:slugger, "~> 0.1.0"},
+      {:comeonin, "~> 2.0"}
     ]
   end
 
