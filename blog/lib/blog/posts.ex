@@ -6,7 +6,7 @@ defmodule Blog.Posts do
   import Ecto.Query, warn: false
 
   alias Blog.Repo
-  alias Blog.Posts.Post
+  alias Blog.Post
 
   @doc """
   Gets a list of all published posts.any()

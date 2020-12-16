@@ -9,7 +9,7 @@ defmodule BlogWeb.Auth do
 
   def init(_opts),  do: []
 
-  def call(call, _opts) do
+  def call(conn, _opts) do
     user_id = get_session(conn, :user_id)
     cond do
       user = conn.assigns[:current_user] ->

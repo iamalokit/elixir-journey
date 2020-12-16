@@ -2,7 +2,6 @@ defmodule Blog.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
-  use BlogWeb, :model
 
   schema "posts" do
     field :body, :string
