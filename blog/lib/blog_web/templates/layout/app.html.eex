@@ -1,14 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <!--<head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Blog · Phoenix Framework</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </head> !-->
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-57x57.png") %>">
+    <link rel="apple-touch-icon" sizes="60x60" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-60x60.png") %>">
+    <link rel="apple-touch-icon" sizes="72x72" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-72x72.png") %>">
+    <link rel="apple-touch-icon" sizes="76x76" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-76x76.png") %>">
+    <link rel="apple-touch-icon" sizes="114x114" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-114x114.png") %>">
+    <link rel="apple-touch-icon" sizes="120x120" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-120x120.png") %>">
+    <link rel="apple-touch-icon" sizes="144x144" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-144x144.png") %>">
+    <link rel="apple-touch-icon" sizes="152x152" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-152x152.png") %>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= Routes.static_path(@conn, "/favicon/apple-icon-180x180.png") %>">
+    <link rel="icon" type="image/png" sizes="192x192"  href="<%= Routes.static_path(@conn, "/favicon/android-icon-192x192.png") %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= Routes.static_path(@conn, "/favicon/favicon-32x32.png") %>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= Routes.static_path(@conn, "/favicon/favicon-96x96.png") %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= Routes.static_path(@conn, "/favicon/favicon-16x16.png") %>">
+    <link rel="manifest" href="<%= Routes.static_path(@conn, "/favicon/manifest.json") %>">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="<%= Routes.static_path(@conn, "/favicon/ms-icon-144x144.png") %>">
+    <meta name="theme-color" content="#ffffff">
+
+    <title><%= title(@view_module, @view_template, assigns) %></title>
+
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/vendor.css") %>">
   </head>
   <body>
+    <div class="container">
+      <%= if @current_user do %>
+        <div class="header">
+          <span>Signed in as: <strong><%= @current_user.username %></strong></span>
+          <div id="logout">
+            <%= link "Log out", to: Routes.session_path(@conn, :delete, @current_user), method: "delete" %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= if get_flash(@conn, :info) do %>
+        <div class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></div>
+      <% end %>
+
+      <%= if get_flash(@conn, :error) do %>
+        <div class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></div>
+      <% end %>
+
+      <div class="main">
+        <%= render @view_module, @view_template, assigns %>
+      </div>
+
+    </div> <!-- /container -->
+    <script src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+  </body>
+  <!-- <body>
     <header>
       <section class="container">
         <nav role="navigation">
@@ -29,5 +83,5 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= @inner_content %>
     </main>
-  </body>
+  </body> !-->
 </html>

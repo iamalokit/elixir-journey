@@ -7,16 +7,18 @@ defmodule BlogWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug BlogWeb.Auth
   end
 
-  pipeline :api do
-    plug :accepts, ["json"]
-  end
+  # pipeline :api do
+  #   plug :accepts, ["json"]
+  # end
 
   scope "/", BlogWeb do
     pipe_through :browser
 
     get "/", PageController, :index
+    get "/resume", PageController, :resume
   end
 
   # Other scopes may use custom stacks.
