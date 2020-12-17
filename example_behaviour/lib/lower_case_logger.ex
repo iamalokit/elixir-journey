@@ -6,7 +6,7 @@ defmodule ExampleBehaviour.LowerCaseLogger do
   @impl Logger
   @spec log_message(Logger.log_list(), Logger.level(), String.t()) :: Logger.log_list()
   def log_message(log_list, level, message) do
-    [{level, String.downcase(message) | log_list}]
+    [{level, String.downcase(message)} | log_list]
   end
 
   @impl Logger
