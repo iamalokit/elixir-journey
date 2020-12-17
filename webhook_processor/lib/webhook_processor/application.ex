@@ -10,6 +10,11 @@ defmodule WebhookProcessor.Application do
     children = [
       # Starts a worker by calling: WebhookProcessor.Worker.start_link(arg)
       # {WebhookProcessor.Worker, arg}
+      Plug.Cowboy.child_spec(
+        scheme: :http,
+        plug: WebhookProcessor.Endpoint,
+        options: [port: Application.get_env(:webhook_processor, :port)]
+      )
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
