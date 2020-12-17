@@ -1,0 +1,32 @@
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    Oops, something went wrong! Please check the errors below.
+  </div>
+<% end %>
+
+<%= form_for @changeset, @action, [class: "pure-form", id: "post-form"], fn f -> %>
+  <fieldset>
+    <%= text_input f, :title, class: "pure-input-1-2", placeholder: "Title" %>
+    <div>
+      <%= error_tag f, :title %>
+      <%= error_tag f, :slug %>
+    </div>
+
+    <%= textarea f, :body, class: "pure-input-1 post-body-input", rows: "25", placeholder: "Body" %>
+    <%= error_tag f, :body %>
+
+    <label id="published-label" for="post_published" class="pure-checkbox">
+      <%= checkbox f, :published %> Published
+    </label>
+    <%= error_tag f, :published %>
+
+    <div class="form-buttons">
+      <%= link "Back", to: post_path(@conn, :index), class: "pure-button pure-button-primary" %>
+      <%= submit "Submit", class: "pure-button pure-button-primary" %>
+    </div>
+
+    <div id="preview"></div>
+  </fieldset>
+<% end %>
+
+<script src="<%= static_path(@conn, "/js/markdown.js") %>"></script>

@@ -1,0 +1,21 @@
+<h1 class="page-heading">
+  <%= @post.title %>
+  <%= if !@post.published do %>
+    <span class="unpublished">(unpublished)</span>
+  <% end %>
+</h1>
+<div class="center-text">
+  <%= get_formatted_date(@post) %>
+</div>
+<hr>
+<div class="post-contents">
+  <%= raw(get_formatted_post(@post)) %>
+</div>
+
+<div class="nav-buttons">
+  <%= link "Back", to: post_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
+  <%= if @current_user do %>
+    <%= link "Edit", to: post_path(@conn, :edit, @post), method: :get, class: "pure-button pure-button-primary" %>
+    <%= link "Delete", to: post_path(@conn, :delete, @post), method: :delete, data: [confirm: "Are you sure?"], class: "pure-button pure-button-primary" %>
+  <% end %>
+</div>

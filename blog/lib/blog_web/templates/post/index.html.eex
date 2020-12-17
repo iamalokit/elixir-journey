@@ -1,0 +1,27 @@
+<h1 class="page-heading">Posts</h1>
+<hr>
+<div>
+  <%= if @posts != [] do %>
+    <%= for post <- @posts do %>
+      <div class="post-entry">
+        <h3>
+          <%= link post.title, to: post_path(@conn, :show, post) %>
+          <%= if !post.published do %>
+            <span>(unpublished)</span>
+          <% end %>
+        </h3>
+        <span><%= get_formatted_date(post) %></span>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="post-entry">
+      <h3>None yet!</h3>
+    </div>
+  <% end %>
+</div>
+<div class="nav-buttons">
+  <%= link "Back", to: page_path(@conn, :index), method: :get, class: "pure-button pure-button-primary" %>
+  <%= if @current_user do %>
+    <%= link "New", to: post_path(@conn, :new), class: "pure-button pure-button-primary" %>
+  <% end %>
+</div>
