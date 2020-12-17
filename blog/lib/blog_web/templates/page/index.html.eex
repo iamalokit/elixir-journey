@@ -31,8 +31,8 @@
       <h3>Latest Post</h3>
       <div class="indent">
         <%= if @latest_post do %>
-          <span id="latest-post-title"><%= link modify_post_title(@latest_post).title, to: Routes.post_path(@conn, :show, @latest_post) %></span>
-          <span id="latest-post-date"><%= get_formatted_date(@latest_post) %></span>
+          <span id="latest-post-title"><%= link modify_post_title(@latest_post).title, to: post_path(@conn, :show, @latest_post) %></span>
+          <span id="latest-post-date"><%= BlogWeb.PostViewHelpers.get_formatted_date(@latest_post) %></span>
         <% else %>
           <span>None yet!</span>
         <% end %>

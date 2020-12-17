@@ -1,6 +1,6 @@
 defmodule BlogWeb.PageController do
   use BlogWeb, :controller
-
+  alias BlogWeb.ControllerHelpers
   def index(conn, _params) do
     latest_post =
       conn
