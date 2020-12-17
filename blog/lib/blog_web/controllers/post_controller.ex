@@ -37,7 +37,7 @@ defmodule BlogWeb.PostController do
       {:ok, _post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: post_path(conn, :index))
+        |> redirect(to: Routes.post_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
@@ -50,7 +50,7 @@ defmodule BlogWeb.PostController do
     else
       conn
       |> put_flash(:error, "This post cannot be viewed.")
-      |> redirect(to: post_path(conn, :index))
+      |> redirect(to: Routes.post_path(conn, :index))
     end
   end
 
@@ -67,7 +67,7 @@ defmodule BlogWeb.PostController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: post_path(conn, :show, post))
+        |> redirect(to: Routes.post_path(conn, :show, post))
       {:error, changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset)
     end
@@ -82,6 +82,6 @@ defmodule BlogWeb.PostController do
 
     conn
     |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: post_path(conn, :index))
+    |> redirect(to: Routes.post_path(conn, :index))
   end
 end

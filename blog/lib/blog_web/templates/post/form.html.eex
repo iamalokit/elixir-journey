@@ -21,7 +21,7 @@
     <%= error_tag f, :published %>
 
     <div class="form-buttons">
-      <%= link "Back", to: post_path(@conn, :index), class: "pure-button pure-button-primary" %>
+      <%= link "Back", to: Routes.post_path(@conn, :index), class: "pure-button pure-button-primary" %>
       <%= submit "Submit", class: "pure-button pure-button-primary" %>
     </div>
 
@@ -29,4 +29,4 @@
   </fieldset>
 <% end %>
 
-<script src="<%= static_path(@conn, "/js/markdown.js") %>"></script>
+<script src="<%= Routes.static_path(@conn, "/js/markdown.js") %>"></script>
