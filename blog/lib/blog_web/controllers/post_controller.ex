@@ -4,9 +4,9 @@ defmodule BlogWeb.PostController do
   """
 
   use BlogWeb, :controller
-  alias BlogWeb.Router.Helpers
   alias Blog.Post
   alias Blog.Posts
+  alias BlogWeb.ControllerHelpers
 
   # Make sure the user is logged in when attempting to access the restricted routes
   plug :authenticate_user when action in [:new, :create, :edit, :update, :delete]
@@ -17,7 +17,7 @@ defmodule BlogWeb.PostController do
     else
       conn
       |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: Helpers.page_path(conn, :index))
+      |> redirect(to: Routers.page_path(conn, :index))
       |> halt()
     end
   end
